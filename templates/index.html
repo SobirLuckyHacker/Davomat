@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Add Student</h2>
+    {{error}}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="full_name">
+        <input type="number" name="age" >
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <h2>Students</h2>
+    <h2>{{context}}</h2>
+    <table border="3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tfoot>
+            {% for student in stu %}
+              <tr>
+                <th>{{ forloop.counter}}</th>
+                <th>{{student.name}}</th>
+                <th>{{student.age}}</th>
+                <th>{{student.date}}</th>
+                <th>
+                    <form action="{% url 'kelmadi' student.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Kelmadi</button>
+                    </form>
+                </th>
+              </tr>
+            {% endfor %}
+        </tfoot>
+    </table>
+    <hr>
+    <h2>Davomat</h2>
+    <table border="3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tfoot>
+            {% for davomats in davomatsss %}
+              <tr>
+                  <th>{{forloop.counter}}</th>
+                  <th>{{davomats.name}}</th>
+                  <th>{{davomats.date}}</th>
+              </tr>
+            {% endfor %}
+        </tfoot>
+    </table>
+</body>
+</html>
