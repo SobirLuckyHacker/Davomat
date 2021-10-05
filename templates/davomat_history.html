@@ -8,8 +8,18 @@
 </head>
 <body>
     <hr>
-    <h2>Davomat</h2>
-    <h2>Time {{time}}</h2>
+    <h2>
+        Davomat
+        <form action="{% url 'history' %}" method="get">
+            <select name="cts" onchange="submit()">
+                <option value="0">Barchasi</option>
+                {% for category in groups %}
+                <option value={{category.id}}>{{category.group_name}}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </h2>
+    <h2>Time {{time}} Davomatlar : {{davomat_len}}</h2> 
     <hr>
     <table border="3">
         <thead>
@@ -17,6 +27,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Date</th>
+                <th>Group</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -26,6 +37,7 @@
                   <th>{{forloop.counter}}</th>
                   <th>{{davomats.name}}</th>
                   <th>{{davomats.date}}</th>
+                  <th>{{davomats.group}}</th>
                   <th>
                     <form action="{% url 'delete_davomat' davomats.id %}" method="post">
                         {% csrf_token %}

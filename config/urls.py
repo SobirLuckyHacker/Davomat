@@ -22,5 +22,5 @@ urlpatterns = [
     path('home/<int:pk>/',kelmadi,name='kelmadi'),
     path('davomat/',history,name='history'),
     path('delete/<int:pk>/',delete,name='delete'),
-    path('delete_davomat/<int:pk>/',delete_davomat,name='delete_davomat '),
+    path('delete_davomat/<int:pk>/',delete_davomat,name='delete_davomat'),
 ]
