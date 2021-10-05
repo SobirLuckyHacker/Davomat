@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Davomat.views import home,kelmadi
+from Davomat.views import home,kelmadi,history
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
-    path('home/<int:pk>/',kelmadi,name='kelmadi')
+    path('home/<int:pk>/',kelmadi,name='kelmadi'),
+    path('davomat/',history,name='history'),
 ]

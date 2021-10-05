@@ -46,24 +46,9 @@
         </tfoot>
     </table>
     <hr>
-    <h2>Davomat</h2>
-    <table border="3">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tfoot>
-            {% for davomats in davomatsss %}
-              <tr>
-                  <th>{{forloop.counter}}</th>
-                  <th>{{davomats.name}}</th>
-                  <th>{{davomats.date}}</th>
-              </tr>
-            {% endfor %}
-        </tfoot>
-    </table>
+    <form action="{% url 'history' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Davomat Varaqasi</button>
+    </form>
 </body>
 </html>

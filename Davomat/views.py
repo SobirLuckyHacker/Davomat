@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Davomats, Students
+from datetime import datetime
 
 def home(request):
     context={}
@@ -20,10 +21,13 @@ def home(request):
 def kelmadi(request,pk):
     context={}
     student_id = Students.objects.filter(id=pk)
-    davomatlar=Davomats.objects.all().order_by('-id')
     for stu in student_id:
         print(stu)
         davomat = Davomats.objects.create(name=stu.name)
         davomat.save()
         return redirect('home')
-    return render(request,'index.html',{"davomatsss":davomatlar})
+
+def history(request):
+    this_date = datetime.now()
+    davomatlar=Davomats.objects.all().order_by('-id')
+    return render(request,'davomat_history.html',{'davomat':davomatlar,'time':this_date})
