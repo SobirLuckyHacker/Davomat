@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Students,Davomats
+from .models import Student,Davomats
 
-admin.site.register(Students)
+admin.site.register(Student)
 admin.site.register(Davomats)

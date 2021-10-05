@@ -25,7 +25,7 @@
                 <th>Name</th>
                 <th>Age</th>
                 <th>Date</th>
-                <th>Action</th>
+                <th colspan="3">Action</th> 
             </tr>
         </thead>
         <tfoot>
@@ -39,6 +39,12 @@
                     <form action="{% url 'kelmadi' student.id %}" method="post">
                         {% csrf_token %}
                         <button type="submit">Kelmadi</button>
+                    </form>
+                </th>
+                <th>
+                    <form action="{% url 'delete' student.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
                     </form>
                 </th>
               </tr>

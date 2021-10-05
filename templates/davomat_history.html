@@ -17,6 +17,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Date</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tfoot>
@@ -25,9 +26,23 @@
                   <th>{{forloop.counter}}</th>
                   <th>{{davomats.name}}</th>
                   <th>{{davomats.date}}</th>
+                  <th>
+                    <form action="{% url 'delete_davomat' davomats.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </th>
               </tr>
             {% endfor %}
         </tfoot>
     </table>
+
+    <br>
+    <hr>
+   
+    <form action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Back</button>
+    </form>
 </body>
 </html>
