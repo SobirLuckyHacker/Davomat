@@ -49,14 +49,14 @@ def history(request):
             get_group = i
     if student_category != '0' :
         ctg=Davomat.objects.filter(group=get_group).order_by('-id')
-        
-        print(ctg)
+        student_step = len(ctg) 
+        print()
     else:
         ctg=Davomat.objects.all()
         
     attendence = Davomat.objects.filter(date__day=this_date.day)
     len_davomat = len(attendence)
-    return render(request,'davomat_history.html',{'davomat':davomatlar,'time':this_date,'davomat_len':len_davomat,'groups':groups_student,'ctg':ctg})
+    return render(request,'davomat_history.html',{'davomat':davomatlar,'time':this_date,'davomat_len':len_davomat,'groups':groups_student,'ctg':ctg,'student_step':student_step,'get_group':get_group})
 
 def delete(request,pk):
     student = Students.objects.filter(id=pk)
