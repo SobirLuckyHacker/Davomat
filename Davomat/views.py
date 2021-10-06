@@ -41,15 +41,19 @@ def kelmadi(request,pk):
         
 def history(request):
     this_date = datetime.today().date()
-    # Date bilan ishlangan
     davomatlar=Davomat.objects.all().order_by('-id')
     groups_student = Group_Student.objects.all()
     student_category = request.GET.get('cts',"0")
+    for i in Group_Student.objects.all():
+        if i.id == int(student_category):
+            get_group = i
     if student_category != '0' :
-        ctg=Davomat.objects.filter(group=student_category).order_by('-id')
+        ctg=Davomat.objects.filter(group=get_group).order_by('-id')
+        
         print(ctg)
     else:
         ctg=Davomat.objects.all()
+        
     attendence = Davomat.objects.filter(date__day=this_date.day)
     len_davomat = len(attendence)
     return render(request,'davomat_history.html',{'davomat':davomatlar,'time':this_date,'davomat_len':len_davomat,'groups':groups_student,'ctg':ctg})
